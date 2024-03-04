@@ -1,3 +1,4 @@
 Flask>=3.0.2
 yfinance>=0.2.37
 termcolor>=2.4.0
+gunicor>=21.2.0
