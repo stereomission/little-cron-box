@@ -17,3 +17,4 @@ with open(output_prices_path, 'a') as file:
         output_string = f"{ticker}: {price:.2f}\n"
         # Print with color
         file.write(output_string)
+    print(f"File successfully created at: {output_prices_path}")
