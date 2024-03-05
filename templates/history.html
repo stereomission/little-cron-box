@@ -39,11 +39,9 @@
             }
         </style>
     </head>
-<body>
-    <h1>Stock Prices History</h1>
-     <p>   {% for line in content %}
-            <p>{{ line }}</p>
-        {% endfor %}
-    </p>
-</body>
+    <body>
+        <h1>Stock Prices History</h1>
+        <pre>{{ content }}</pre> <!-- This will preserve the formatting as it is -->
+    </body>
+    </html>
 </html>

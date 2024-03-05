@@ -1,25 +1,28 @@
 from flask import Flask, render_template
 import os
+import dropbox
 
-# Define the path to the output file
-output_prices_path = 'prices_history.txt'
+# Replace 'your_access_token' with your actual Dropbox API token
+dbx = dropbox.Dropbox('sl.Bw1Fbia9BtJO9lLFW5i3bxeairVzCx4kSjPlUSIR6njvTJpXIEjudkFbJqXicP9Sf2l0rOSbbMajz77b4wJdEfQHL3A1kslZ3F7g5uRfBAqvazy8Jyo6RtqnrgVayXz3D6dZAEG3xmVd')
+
+# Specify the folder and the file name
+folder_path = '/stock-prices-2024'  # The specific folder you want to use
+file_name = 'prices_history.txt'
+dropbox_path = f'{folder_path}/{file_name}'
 
 app = Flask(__name__)
 
+# Download the file from the specified folder
+metadata, res = dbx.files_download(dropbox_path)
+
+# Assuming you want to print the content or save it locally
+data = res.content.decode("utf-8")
+
 @app.route('/')
 def show_history():
-    # Check if the output file exists
-    if os.path.exists(output_prices_path):
-        # Read the contents of the file
-        with open(output_prices_path, 'r') as file:
-            content = file.readlines()
-            # Reverse the content list so the latest entry appears first
-            content = content[::-1]
-    else:
-        content = ["No data available."]
-    
+    #lines = data.split('\n')
     # Render a template with the content, or directly return it if you prefer
-    return render_template('history.html', content=content)
+    return render_template('history.html', content=data)
 
 if __name__ == '__main__':
     app.run(debug=True)

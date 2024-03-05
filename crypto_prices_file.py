@@ -3,7 +3,7 @@ import yfinance as yf
 
 tickers = ['BTC-USD', 'ETH-USD', 'ETH-BTC', 'SOL-ETH']
 
-output_prices_path = 'prices_history.txt'
+output_prices_path = 'data/prices_history.txt'
 
 prices_data = yf.download(tickers, period='1d')['Close']
 
