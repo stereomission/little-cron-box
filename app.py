@@ -1,9 +1,11 @@
 from flask import Flask, render_template
 import os
 import dropbox
+from dotenv import load_dotenv
+load_dotenv()  # This loads the variables from .env into the environment
 
-# Replace 'your_access_token' with your actual Dropbox API token
-dbx = dropbox.Dropbox('sl.Bw0BDwCrQdAJZ4ybrmkP3wxatA7nNASBP-9sVU8fb7uGnKTj0_QBlbiSFc8FuUvoumPSJmNHP_dWWRx87hnB6d_S4ykcc9hjZDhccyh8RISbqxBAaXCSKY3ux-YhtK8MTD1os7Ks6YRw')
+# Use the access token from the environment variable
+dbx = dropbox.Dropbox(os.getenv('DROPBOX_TOKEN'))
 
 # Specify the folder and the file name
 folder_path = '/stock-prices-2024'  # The specific folder you want to use

@@ -1,9 +1,12 @@
 from datetime import datetime
 import yfinance as yf
 import dropbox
+import os
+from dotenv import load_dotenv
+load_dotenv()  # This loads the variables from .env into the environment
 
-# Replace 'your_access_token' with your actual Dropbox API token
-dbx = dropbox.Dropbox('sl.Bw0BDwCrQdAJZ4ybrmkP3wxatA7nNASBP-9sVU8fb7uGnKTj0_QBlbiSFc8FuUvoumPSJmNHP_dWWRx87hnB6d_S4ykcc9hjZDhccyh8RISbqxBAaXCSKY3ux-YhtK8MTD1os7Ks6YRw')
+# Use the access token from the environment variable
+dbx = dropbox.Dropbox(os.getenv('DROPBOX_TOKEN'))
 
 tickers = ['BTC-USD', 'ETH-USD', 'ETH-BTC', 'SOL-ETH']
 
@@ -30,15 +33,15 @@ response = dbx.files_upload(content_bytes, dropbox_path, mode=dropbox.files.Writ
 print(f'File uploaded to Dropbox at {dropbox_path}.')
 
 # Download the file from the specified folder
-metadata, res = dbx.files_download(dropbox_path)
+#metadata, res = dbx.files_download(dropbox_path)
 
 # Assuming you want to print the content or save it locally
-data = res.content.decode("utf-8")
-print(data)
+#data = res.content.decode("utf-8")
+#print(data)
 
 # Optionally, save the content to a local file
-local_file_path = 'data/prices_history.txt'
-with open(local_file_path, 'w') as f:
-    f.write(data)
+#local_file_path = 'data/prices_history.txt'
+#with open(local_file_path, 'w') as f:
+#    f.write(data)
 
-print(f'File downloaded from Dropbox and saved to {local_file_path}.')
+#print(f'File downloaded from Dropbox and saved to {local_file_path}.')
