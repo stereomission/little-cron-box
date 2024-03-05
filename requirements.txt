@@ -3,3 +3,4 @@ yfinance>=0.2.37
 termcolor>=2.4.0
 gunicorn>=21.2.0
 dropbox>=11.36.2
+python-dotenv==1.0.1
