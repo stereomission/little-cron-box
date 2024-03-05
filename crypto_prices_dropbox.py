@@ -17,7 +17,7 @@ now_time = datetime.today().strftime('%a %d %b %Y, %I:%M%p')
 content = f'CRYPTO PRICES 💷: {now_time}\n'
 for ticker in prices_data.columns:
     price = prices_data[ticker].iloc[0]
-    content += f"{ticker}: {price:.2f}\n"
+    content += f"{ticker}: {price:.4f}\n"
 
 # Convert the string content to bytes
 content_bytes = content.encode('utf-8')
